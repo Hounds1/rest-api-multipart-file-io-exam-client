@@ -1,0 +1,9 @@
+.container {
+    width: 1200px;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.content {
+    padding: 20px;
+}

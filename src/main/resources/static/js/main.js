@@ -14,17 +14,20 @@ async function uploadFile() {
     await fetch(BASE_URL, options)
         .then(response => response.json())
         .then(data => {
-            getImgFromApi(data.targetId)
+            getImgFromApi(data.filePath)
         })
         .catch(e => console.log(e));
 }
 
-async function getImgFromApi(targetId) {
-    fetch(BASE_URL+'?targetId='+targetId)
+async function getImgFromApi(filePath) {
+    fetch(BASE_URL+'?filePath='+filePath, {mode: 'no-cors'})
         .then(response => response.blob())
         .then(blob => {
             const imgElement = document.createElement('img');
             imgElement.src = URL.createObjectURL(blob);
+            imgElement.width = 300;
+            imgElement.height = 300;
             document.querySelector('.img-box').appendChild(imgElement);
+            document.querySelector('#target-img').value = '';
         });
 }

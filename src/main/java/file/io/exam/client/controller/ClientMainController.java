@@ -10,4 +10,9 @@ public class ClientMainController {
     public String mainPage() {
         return "/main";
     }
+
+    @GetMapping("client/menu")
+    public String menuPage() {
+        return "/menu";
+    }
 }

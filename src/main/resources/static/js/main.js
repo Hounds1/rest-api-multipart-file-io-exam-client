@@ -1,5 +1,3 @@
-const addButton = document.querySelector('.add-img-button');
-
 const BASE_URL = "http://localhost:9090/api/v1/files";
 async function uploadFile() {
     const target = document.querySelector('#target-img');
@@ -13,14 +11,12 @@ async function uploadFile() {
       body: formData
     };
 
-    try {
-        const response = await fetch(BASE_URL, options);
-        const data = await response.json();
-        console.log(data);
-        getImgFromApi(data.targetId);
-    } catch (e) {
-        console.log(e);
-    }
+    await fetch(BASE_URL, options)
+        .then(response => response.json())
+        .then(data => {
+            getImgFromApi(data.targetId)
+        })
+        .catch(e => console.log(e));
 }
 
 async function getImgFromApi(targetId) {

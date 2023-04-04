@@ -14,13 +14,13 @@ async function uploadFile() {
     await fetch(BASE_URL, options)
         .then(response => response.json())
         .then(data => {
-            getImgFromApi(data.filePath)
+            getImgFromApi(data.fileName)
         })
         .catch(e => console.log(e));
 }
 
-async function getImgFromApi(filePath) {
-    fetch(BASE_URL+'?filePath='+filePath, {mode: 'no-cors'})
+async function getImgFromApi(fileName) {
+    fetch(BASE_URL+'?fileName='+fileName)
         .then(response => response.blob())
         .then(blob => {
             const imgElement = document.createElement('img');
